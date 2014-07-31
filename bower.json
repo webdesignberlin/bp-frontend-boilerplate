@@ -1,0 +1,26 @@
+{
+	"name": "grunt-guide",
+	"version": "0.0.1",
+	"authors": [
+		"mg@bytepark.de",
+		"sl@bytepark.de"
+	],
+	"homepage": "",
+	"description": "",
+	"main": "",
+	"license": "GPL",
+	"private": true,
+	"ignore": [
+		"node_modules",
+		"bower_components",
+		".DS_Store?",
+		"._*",
+		".Spotlight-V100",
+		".Trashes",
+		"ehthumbs.db",
+		"Thumbs.db"
+	],
+	"devDependencies": {
+		"jquery": "*"
+	}
+}
