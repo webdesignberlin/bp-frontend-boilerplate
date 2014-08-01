@@ -2,13 +2,35 @@
 @import "mixins";
 /* = Mixin imports */
 
-/* + Components */
-@import "responsive-embed";
-/* = Components */
+/* + Function imports */
+/* = Function imports */
+
+/* + Variablen (Farben, Fonts, etc) */
+$standard-color: #404040;
+$primary-color: #00617d;
+$primary-color--active: #00617d;
+$secondary-color: #6dc1dc;
+$secondary-color--active: #6dc1dc;
+
+$error-color: #a15456;
+
+$font-size-normal: 14px;
+$standard-spacing: 14px;
+$large-spacing: $standard-spacing * 2;
+
+/* = Variablen (Farben, Fonts, etc) */
 
 /* + Reset */
-html { box-sizing: border-box; }
-*, 
-*:before, 
-*:after { box-sizing: inherit; }
+* { margin:0; padding:0; outline:none; border:none; }
+@import "modules/reset"; /* box-sizing reset and customized normalize.css v3.0.0 */
 /* = Reset */
+
+/* + General styles (Typo, Formulare, Tabellen, etc) */
+/* = General styles (Typo, Formulare, Tabellen, etc) */
+
+/* + Styles höherer Ordnung (OOCSS – Nicht-modulspezifische oder modulübergreifende Styles) */
+/* = Styles höherer Ordnung (OOCSS – Nicht-modulspezifische oder modulübergreifende Styles) */
+
+/* + Modul Styles */
+@import "modules/responsive-embed"; /* Responsive Container for embed code like iframes */
+/* = Modul Styles */
