@@ -1,0 +1,28 @@
+/* 
+Usage: @include font-size(14px)
+Output: font-size: 14px; //Will be overridden if browser supports rem
+        font-size: 0.8rem;
+*/
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return $remSize * 1rem;
+}
+
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+
+/* + Alternative */
+/*
+Usage:  @include font-size(26);
+Output: line-height:3rem; font-size:2.33333rem;
+@mixin font-size($sizeValue: 1.6, $line: $sizeValue * 1.5) {
+  font-size: ($sizeValue * 1) + px;
+  line-height: ($line * 1) + px;
+  font-size: ($sizeValue / 10) + rem;
+  line-height: ($line / 10) + rem;
+}
+
+*/

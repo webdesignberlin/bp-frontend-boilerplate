@@ -1,7 +1,14 @@
-html {
-    box-sizing: border-box;
-}
+/* + Mixin imports */
+@import "mixins";
+/* = Mixin imports */
 
-* {
-    box-sizing: inherit;
-}
+/* + Components */
+@import "responsive-embed";
+/* = Components */
+
+/* + Reset */
+html { box-sizing: border-box; }
+*, 
+*:before, 
+*:after { box-sizing: inherit; }
+/* = Reset */
