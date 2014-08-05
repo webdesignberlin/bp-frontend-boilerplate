@@ -26,12 +26,12 @@ module.exports = function(grunt) {
         /* + Task Config: Clean */
         clean: {
             deps: [
+                ['<%= globalConfig.temp %>/']
             ]
         },
         /* = Task Config: Clean */
 
         /* + Task Config: Copy dependency files */
-
         copy: {
 
             // local jquery
@@ -43,9 +43,9 @@ module.exports = function(grunt) {
             }
 
         },
+        /* = Task Config: Copy dependency files */
 
         /* + Task config: Update json */
-
         update_json: {
             bower: {
                 src: 'package.json',
@@ -56,10 +56,12 @@ module.exports = function(grunt) {
                 ]
             }
         },
+        /* = Task config: Update json */
 
         /* + Task Config: Concatenation */
         concat: {
         },
+        /* = Task Config: Concatenation */
 
         /* + Task Config: SASS */
         sass: {
@@ -71,12 +73,13 @@ module.exports = function(grunt) {
                 cacheLocation: '<%= globalConfig.root %>/.sass-cache'
             },
             styles: {
-                files: {
-                    '<%= globalConfig.temp %>/css/main.css':
-                        '<%= globalConfig.src %>/css/*.scss'
-                }
+                files: [{
+                    src: '<%= globalConfig.src %>/css/main.scss',
+                    dest: '<%= globalConfig.temp %>/css/main.css'
+                }]
             }
         },
+        /* = Task Config: SASS */
 
         /* + Task Config: Autoprefixer */
         autoprefixer: {
@@ -87,7 +90,9 @@ module.exports = function(grunt) {
                 map: false // not supported by cssmin
             },
             styles: {
-                src: '<%= globalConfig.temp %>/css/main.css'
+                no_dest: {
+                    src: '<%= globalConfig.temp %>/css/main.css'
+                }
             }
         },
         /* = Task Config: Autoprefixer */
@@ -136,6 +141,31 @@ module.exports = function(grunt) {
             }
         },
         /* = Task Config: Uglify */
+        
+        /* + Task Config: Browser Sync */
+        browserSync: {
+            elena: {
+                bsFiles: {
+                    src : ['web/*']
+                },
+                options: {
+                    //proxy: "frontend.mg.code.bytenetz.de",
+                    //watchTask: true,
+                    ghostMode: {
+                        clicks: true,
+                        location: true,
+                        forms: true,
+                        scroll: true
+                    },
+                    
+                    server: {
+                        baseDir: "web",
+                        directory: true
+                    }
+                }
+            }
+        },
+        /* = Task Config: Browser Sync */
 
 
         /* + Task Config: Watch */
@@ -184,7 +214,6 @@ module.exports = function(grunt) {
     });
 
     /* + Custom Tasks */
-
     grunt.registerTask( 'copy-deps', [
         // 'clean:deps',
         'copy'
@@ -204,10 +233,16 @@ module.exports = function(grunt) {
         'update_json:bower',
         'copy-deps',
         'build-css',
-        'build-js'
+        'build-js',
+        'clean'
+    ]);
+    grunt.registerTask( 'sync', [
+        'browserSync',
+        'watch'
     ]);
     grunt.registerTask( 'default', [
         'build'
     ]);
+    /* = Custom Tasks */
 
 };
